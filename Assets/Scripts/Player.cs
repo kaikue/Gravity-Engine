@@ -133,33 +133,30 @@ public class Player : MonoBehaviour
     {
         if (gravChangeQueued != null)
 		{
-            rb.velocity = Vector2.zero;
-            switch (gravChangeQueued)
-			{
-                case GameManager.Direction.Up:
-                    if (gravDirection == Vector2.up) break;
-                    gravDirection = Vector2.up;
-                    transform.rotation = Quaternion.AngleAxis(180, Vector3.forward);
+            if (canGravChange)
+            {
+                Vector2 gravVec = GameManager.GetGravityVector(gravChangeQueued.Value);
+                if (gravVec != gravDirection)
+                {
+                    rb.velocity = Vector2.zero;
+                    gravDirection = gravVec;
                     gm.ChangeGravity(gravChangeQueued.Value);
-                    break;
-                case GameManager.Direction.Down:
-                    if (gravDirection == Vector2.down) break;
-                    gravDirection = Vector2.down;
-                    transform.rotation = Quaternion.identity;
-                    gm.ChangeGravity(gravChangeQueued.Value);
-                    break;
-                case GameManager.Direction.Left:
-                    if (gravDirection == Vector2.left) break;
-                    gravDirection = Vector2.left;
-                    transform.rotation = Quaternion.AngleAxis(270, Vector3.forward);
-                    gm.ChangeGravity(gravChangeQueued.Value);
-                    break;
-                case GameManager.Direction.Right:
-                    if (gravDirection == Vector2.right) break;
-                    gravDirection = Vector2.right;
-                    transform.rotation = Quaternion.AngleAxis(90, Vector3.forward);
-                    gm.ChangeGravity(gravChangeQueued.Value);
-                    break;
+                    switch (gravChangeQueued) //TODO make this one line?
+                    {
+                        case GameManager.Direction.Up:
+                            transform.rotation = Quaternion.AngleAxis(180, Vector3.forward);
+                            break;
+                        case GameManager.Direction.Down:
+                            transform.rotation = Quaternion.identity;
+                            break;
+                        case GameManager.Direction.Left:
+                            transform.rotation = Quaternion.AngleAxis(270, Vector3.forward);
+                            break;
+                        case GameManager.Direction.Right:
+                            transform.rotation = Quaternion.AngleAxis(90, Vector3.forward);
+                            break;
+                    }
+                }
             }
             gravChangeQueued = null;
 		}
@@ -337,6 +334,10 @@ public class Player : MonoBehaviour
         if (!gameObject.activeSelf) return;
 
         GameObject collider = collision.gameObject;
+        if (collider.CompareTag("NextLevel"))
+		{
+            UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1);
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
