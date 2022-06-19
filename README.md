@@ -5,11 +5,9 @@
 ### Mechanics
 
 - Use gamepad right stick to change gravity
-- Fix sprite layer ordering
 - Animate light on backpack
 - More colors of button/lever/door
 - Closing doors crush crates/enemies/player? (would allow respawn challenges) or just shove them out of the way
-- Custom gravity for crates etc.? or use builtin?
 - creatures that push crates (different types)
 	- cling to floor and climb up/down walls- not affected by gravity
 	- turn around when at edge- fall with gravity

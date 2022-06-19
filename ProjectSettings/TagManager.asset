@@ -42,3 +42,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Tiles
+    uniqueID: 2105589137
+    locked: 0
+  - name: Decorations
+    uniqueID: 2087661539
+    locked: 0
+  - name: Interactables
+    uniqueID: 3612579101
+    locked: 0
+  - name: Crates
+    uniqueID: 1958750439
+    locked: 0
+  - name: Player
+    uniqueID: 3173144587
+    locked: 0
