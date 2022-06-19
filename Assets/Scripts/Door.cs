@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
+    public bool startOpen;
+    public Sprite openSprite;
+    private Sprite closedSprite;
     private SpriteRenderer sr;
     private Collider2D coll;
 
@@ -11,17 +14,33 @@ public class Door : MonoBehaviour
     {
         sr = GetComponent<SpriteRenderer>();
         coll = GetComponent<Collider2D>();
+        closedSprite = sr.sprite;
+        if (startOpen)
+		{
+            SetOpen(true);
+		}
     }
+
+    private void SetOpen(bool activated)
+	{
+        if (activated)
+		{
+            sr.sprite = openSprite;
+		}
+        else
+		{
+            sr.sprite = closedSprite;
+		}
+        coll.enabled = !activated;
+	}
 
     public void Activate()
 	{
-        sr.enabled = false;
-        coll.enabled = false;
+        SetOpen(!startOpen);
 	}
 
     public void Deactivate()
 	{
-        sr.enabled = true;
-        coll.enabled = true;
+        SetOpen(startOpen);
     }
 }

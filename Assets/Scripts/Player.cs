@@ -115,7 +115,7 @@ public class Player : MonoBehaviour
 
     private Collider2D RaycastTiles(Vector2 startPoint, Vector2 endPoint)
     {
-        RaycastHit2D hit = Physics2D.Raycast(startPoint, endPoint - startPoint, Vector2.Distance(startPoint, endPoint), LayerMask.GetMask("Tiles"));
+        RaycastHit2D hit = Physics2D.Raycast(startPoint, endPoint - startPoint, Vector2.Distance(startPoint, endPoint), LayerMask.GetMask("Tiles", "Crates"));
         return hit.collider;
     }
 
@@ -127,6 +127,16 @@ public class Player : MonoBehaviour
         Vector2 endPoint = p1 + direction * 0.02f;
         Collider2D collider = RaycastTiles(startPoint, endPoint);
         return collider != null;
+    }
+
+    private RaycastHit2D[] CheckHeadCrates()
+	{
+        Vector2 p0 = transform.TransformPoint(ec.points[1]);
+        Vector2 p1 = transform.TransformPoint(ec.points[2]);
+        Vector2 startPoint = p0 - gravDirection * 0.02f;
+        Vector2 endPoint = p1 - gravDirection * 0.02f;
+        RaycastHit2D[] hits = Physics2D.RaycastAll(startPoint, endPoint - startPoint, Vector2.Distance(startPoint, endPoint), LayerMask.GetMask("Crates"));
+        return hits;
     }
 
     private void FixedUpdate()
@@ -295,6 +305,19 @@ public class Player : MonoBehaviour
         }
 
         Vector2 vel = new Vector2(xVel, yVel);
+
+        RaycastHit2D[] headCrates = CheckHeadCrates();
+        if (headCrates.Length > 0)
+        {
+            canJump = false;
+            foreach (RaycastHit2D headCrate in headCrates)
+            {
+                Rigidbody2D crateRB = headCrate.collider.attachedRigidbody;
+                crateRB.velocity = vel;
+                crateRB.MovePosition(crateRB.position + vel * Time.fixedDeltaTime);
+            }
+        }
+
         if (jumpQueued)
         {
             if (canJump)
