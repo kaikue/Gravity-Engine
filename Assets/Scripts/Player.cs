@@ -14,10 +14,10 @@ public class Player : MonoBehaviour
     }
 
     private const float runAcceleration = 30;
-    public const float maxRunSpeed = 7;
-    private const float jumpForce = 8;
-    private const float gravityForce = 15;
-    private const float maxFallSpeed = 20;
+    public const float maxRunSpeed = 5;
+    private const float jumpForce = 10;
+    public const float gravityForce = 25;
+    private const float maxFallSpeed = 40;
 
     public Sprite standSprite;
     public Sprite[] walkSprites;

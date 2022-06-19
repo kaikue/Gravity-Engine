@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     public void ChangeGravity(Direction direction)
     {
         Vector2 gravVec = GetGravityVector(direction);
-        Physics2D.gravity = gravVec * 9.81f; //TODO match to player gravity
+        Physics2D.gravity = gravVec * Player.gravityForce;
 
         GravityAffected[] gas = FindObjectsOfType<GravityAffected>();
         foreach (GravityAffected ga in gas)

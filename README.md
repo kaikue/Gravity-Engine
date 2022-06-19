@@ -4,8 +4,6 @@
 
 ### Mechanics
 
-- Make jump faster (more powerful + increase gravity- keep 2 tiles)
-- Match crate gravity to player gravity
 - Use gamepad right stick to change gravity
 - Fix sprite layer ordering
 - Animate light on backpack
