@@ -16,31 +16,31 @@ public class Door : MonoBehaviour
         coll = GetComponent<Collider2D>();
         closedSprite = sr.sprite;
         if (startOpen)
-		{
+        {
             SetOpen(true);
-		}
+        }
     }
 
     private void SetOpen(bool activated)
-	{
+    {
         if (activated)
-		{
+        {
             sr.sprite = openSprite;
-		}
+        }
         else
-		{
+        {
             sr.sprite = closedSprite;
-		}
+        }
         coll.enabled = !activated;
-	}
+    }
 
     public void Activate()
-	{
+    {
         SetOpen(!startOpen);
-	}
+    }
 
     public void Deactivate()
-	{
+    {
         SetOpen(startOpen);
     }
 }

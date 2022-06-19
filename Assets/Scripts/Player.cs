@@ -77,9 +77,9 @@ public class Player : MonoBehaviour
         }
 
         if (Input.GetButtonDown("GravChangeUp"))
-		{
+        {
             gravChangeQueued = GameManager.Direction.Up;
-		}
+        }
         if (Input.GetButtonDown("GravChangeDown"))
         {
             gravChangeQueued = GameManager.Direction.Down;
@@ -102,7 +102,7 @@ public class Player : MonoBehaviour
         }*/
 
         /*if (Input.GetKeyDown(KeyCode.N))
-		{
+        {
             UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1);
         }*/
 
@@ -130,7 +130,7 @@ public class Player : MonoBehaviour
     }
 
     private RaycastHit2D[] CheckHeadCrates()
-	{
+    {
         Vector2 p0 = transform.TransformPoint(ec.points[1]);
         Vector2 p1 = transform.TransformPoint(ec.points[2]);
         Vector2 startPoint = p0 - gravDirection * 0.02f;
@@ -142,7 +142,7 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         if (gravChangeQueued != null)
-		{
+        {
             if (canGravChange)
             {
                 Vector2 gravVec = GameManager.GetGravityVector(gravChangeQueued.Value);
@@ -169,7 +169,7 @@ public class Player : MonoBehaviour
                 }
             }
             gravChangeQueued = null;
-		}
+        }
 
         float xVel = 0;
         float yVel = 0;
@@ -179,7 +179,7 @@ public class Player : MonoBehaviour
         bool onCeiling;
 
         if (gravDirection == Vector2.up || gravDirection == Vector2.down)
-		{
+        {
             float prevXVel = rb.velocity.x;
             float dx = runAcceleration * Time.fixedDeltaTime * xInput;
             if (prevXVel != 0 && Mathf.Sign(xInput) != Mathf.Sign(prevXVel))
@@ -194,14 +194,14 @@ public class Player : MonoBehaviour
             }
 
             if (gravDirection == Vector2.down)
-			{
+            {
                 if (xInput != 0)
                 {
                     facingLeft = xInput < 0;
                 }
             }
             else
-			{
+            {
                 if (xInput != 0)
                 {
                     facingLeft = xInput > 0;
@@ -209,7 +209,7 @@ public class Player : MonoBehaviour
             }
         }
         else
-		{
+        {
             float prevYVel = rb.velocity.y;
             float dy = runAcceleration * Time.fixedDeltaTime * yInput;
             if (prevYVel != 0 && Mathf.Sign(yInput) != Mathf.Sign(prevYVel))
@@ -252,7 +252,7 @@ public class Player : MonoBehaviour
                 animState = xVel == 0 ? AnimState.Stand : AnimState.Walk;
             }
             else
-			{
+            {
                 xVel = 0;
                 animState = yVel == 0 ? AnimState.Stand : AnimState.Walk;
             }
@@ -268,7 +268,7 @@ public class Player : MonoBehaviour
                 }
             }
             else
-			{
+            {
                 xVel = Mathf.Clamp(rb.velocity.x + gravityForce * gravDirection.x * Time.fixedDeltaTime, -maxFallSpeed, maxFallSpeed);
                 if (Mathf.Sign(xVel) == Mathf.Sign(gravDirection.x))
                 {
@@ -286,9 +286,9 @@ public class Player : MonoBehaviour
         if (onCeiling)
         {
             if (gravDirection == Vector2.up)
-			{
+            {
                 yVel = Mathf.Max(yVel, 0);
-			}
+            }
             else if (gravDirection == Vector2.down)
             {
                 yVel = Mathf.Min(yVel, 0);
@@ -358,7 +358,7 @@ public class Player : MonoBehaviour
 
         GameObject collider = collision.gameObject;
         if (collider.CompareTag("NextLevel"))
-		{
+        {
             UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1);
         }
     }

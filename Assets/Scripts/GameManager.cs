@@ -5,15 +5,15 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public enum Direction
-	{
-		Up,
-		Down,
-		Left,
-		Right
-	}
+    {
+        Up,
+        Down,
+        Left,
+        Right
+    }
 
-	public static Vector2 GetGravityVector(Direction direction)
-	{
+    public static Vector2 GetGravityVector(Direction direction)
+    {
         switch (direction)
         {
             case Direction.Up:
@@ -24,20 +24,20 @@ public class GameManager : MonoBehaviour
                 return Vector2.left;
             case Direction.Right:
                 return Vector2.right;
-			default:
-				return Vector2.zero;
+            default:
+                return Vector2.zero;
         }
     }
 
-	public void ChangeGravity(Direction direction)
-	{
-		Vector2 gravVec = GetGravityVector(direction);
-		Physics2D.gravity = gravVec * 9.81f;
+    public void ChangeGravity(Direction direction)
+    {
+        Vector2 gravVec = GetGravityVector(direction);
+        Physics2D.gravity = gravVec * 9.81f; //TODO match to player gravity
 
-		GravityAffected[] gas = FindObjectsOfType<GravityAffected>();
-		foreach (GravityAffected ga in gas)
-		{
-			ga.SetGravity(gravVec);
-		}
-	}
+        GravityAffected[] gas = FindObjectsOfType<GravityAffected>();
+        foreach (GravityAffected ga in gas)
+        {
+            ga.SetGravity(gravVec);
+        }
+    }
 }

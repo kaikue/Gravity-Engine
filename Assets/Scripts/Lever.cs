@@ -17,18 +17,18 @@ public class Lever : MonoBehaviour
         defaultSprite = sr.sprite;
     }
 
-	private void OnTriggerStay2D(Collider2D collision)
-	{
+    private void OnTriggerStay2D(Collider2D collision)
+    {
         Rigidbody2D rb = collision.gameObject.GetComponent<Rigidbody2D>();
         if (rb)
-		{
+        {
             Vector2 relVel = transform.InverseTransformDirection(rb.velocity);
             if (relVel.x > 0 && !toggled) //rb moving right relative to unrotated transform
             {
                 toggled = true;
                 sr.sprite = toggledSprite;
                 door.Activate();
-			}
+            }
             else if (relVel.x < 0 && toggled) //rb moving left relative to unrotated transform
             {
                 toggled = false;
@@ -36,5 +36,5 @@ public class Lever : MonoBehaviour
                 door.Deactivate();
             }
         }
-	}
+    }
 }
