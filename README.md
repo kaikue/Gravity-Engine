@@ -13,12 +13,13 @@
 	- turn around when at edge- fall with gravity
 		- can get squished by crates? respawn? or carry crates on head
 		- kill you on contact?
+- Wormhole portals
+- Fields of fixed gravity
 - Spikes? make you restart
-- Conveyor belts? move things on top of them
+- Conveyor belts? move things on top of them (redundant with creatures?)
 - slippery surfaces? that you can't flip off of, only walk off
 - sticky surfaces? that you can't walk on, only flip off of
 - sticky crates- not affected by gravity when attached to wall, can be pushed
-- antigravity fields- gravity goes in opposite direction (or fixed direction?)
 - magnets???
 - water- falls with gravity, splits when it hits the floor
 - hub overworld leads to single-screen puzzles- exploration and movement

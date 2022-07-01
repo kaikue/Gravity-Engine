@@ -2,26 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : MonoBehaviour
+public class Door : Activatable
 {
-    public bool startOpen;
     public Sprite openSprite;
     private Sprite closedSprite;
     private SpriteRenderer sr;
     private Collider2D coll;
 
-    private void Start()
+    protected override void Start()
     {
         sr = GetComponent<SpriteRenderer>();
         coll = GetComponent<Collider2D>();
         closedSprite = sr.sprite;
-        if (startOpen)
-        {
-            SetOpen(true);
-        }
+        base.Start();
     }
 
-    private void SetOpen(bool activated)
+    protected override void SetActive(bool activated)
     {
         if (activated)
         {
@@ -32,15 +28,5 @@ public class Door : MonoBehaviour
             sr.sprite = closedSprite;
         }
         coll.enabled = !activated;
-    }
-
-    public void Activate()
-    {
-        SetOpen(!startOpen);
-    }
-
-    public void Deactivate()
-    {
-        SetOpen(startOpen);
     }
 }

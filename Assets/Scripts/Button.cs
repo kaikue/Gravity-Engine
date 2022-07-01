@@ -9,7 +9,7 @@ public class Button : MonoBehaviour
     private SpriteRenderer sr;
     private int pressers = 0;
 
-    public Door door;
+    public Activatable activatable;
 
     private void Start()
     {
@@ -25,7 +25,7 @@ public class Button : MonoBehaviour
             if (pressers == 0)
             {
                 sr.sprite = pressedSprite;
-                door.Activate();
+                activatable.Activate();
             }
             pressers++;
         }
@@ -40,7 +40,7 @@ public class Button : MonoBehaviour
             if (pressers == 0)
             {
                 sr.sprite = unpressedSprite;
-                door.Deactivate();
+                activatable.Deactivate();
             }
         }
     }

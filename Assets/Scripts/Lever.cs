@@ -9,7 +9,7 @@ public class Lever : MonoBehaviour
     private SpriteRenderer sr;
     private bool toggled = false;
 
-    public Door door;
+    public Activatable activatable;
 
     private void Start()
     {
@@ -27,13 +27,13 @@ public class Lever : MonoBehaviour
             {
                 toggled = true;
                 sr.sprite = toggledSprite;
-                door.Activate();
+                activatable.Activate();
             }
             else if (relVel.x < 0 && toggled) //rb moving left relative to unrotated transform
             {
                 toggled = false;
                 sr.sprite = defaultSprite;
-                door.Deactivate();
+                activatable.Deactivate();
             }
         }
     }
